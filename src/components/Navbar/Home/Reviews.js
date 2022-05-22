@@ -12,8 +12,8 @@ const Reviews = () => {
     console.log(reviews);
     return (
         <div>
-            <h1 className='text-center text-6xl '>Our Client Says</h1>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
+            <h1 className='text-center text-6xl mb-4'>Our Client Says</h1>
+            <div className='grid grid-cols-1 sm:grid-cols-2 sm:container container lg:grid-cols-3 gap-5'>
 
                 {
                     reviews.map(review => <div className="card lg:max-w-lg bg-base-100 shadow-xl">
