@@ -43,11 +43,11 @@ const Login = () => {
 
     return (
         <div>
-            <div class="hero min-h-screen ">
-                <div class="hero-content flex-col">
+            <div className="hero min-h-screen ">
+                <div className="hero-content flex-col">
 
-                    <div class="card w-full   lg:max-w-full shadow-2xl bg-base-100">
-                        <div class="card-body">
+                    <div className="card w-full   lg:max-w-full shadow-2xl bg-base-100">
+                        <div className="card-body">
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="form-control w-full ">
                                     <label className="label">

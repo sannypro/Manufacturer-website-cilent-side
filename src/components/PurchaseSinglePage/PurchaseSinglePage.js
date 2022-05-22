@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -8,11 +8,63 @@ import Loading from '../Shared/Loading';
 
 const PurchaseSinglePage = () => {
     const [user] = useAuthState(auth)
+    const [orderQuantity, setOrderQuantity] = useState(0)
+    const [quantityError, setQuantityError] = useState('',)
+    const [buttonDisabled, setButtonDisabled] = useState(false)
+
     const { id } = useParams()
-    const { data: product, isLoading } = useQuery(('parts', id), () => axios.get(`http://localhost:5000/parts/${id}`))
+    const { data: product, isLoading, refetch } = useQuery(('parts', id), () => axios.get(`http://localhost:5000/parts/${id}`))
     const products = product?.data
+    useEffect(() => {
+        const orderQantityMinimumParseInt = parseInt(product?.data.minimunOrder)
+        setOrderQuantity(orderQantityMinimumParseInt)
+
+
+
+    }, [product])
     if (isLoading) {
         return <Loading></Loading>
+    }
+
+    const handleNewQuantity = e => {
+        const newQuantity = parseInt(e.target.value);
+
+        setOrderQuantity(newQuantity)
+        if (newQuantity < parseInt(product?.data.minimunOrder)) {
+            setQuantityError("you Can not add less than Minimum Order Quantity")
+            setButtonDisabled(true)
+        }
+        else if (newQuantity > parseInt(product?.data.available)) {
+            setQuantityError("you Can not add higher than available Quantity")
+            setButtonDisabled(true)
+        }
+        else {
+
+            setQuantityError('')
+            setButtonDisabled(false)
+        }
+    }
+    const hanldeSubmit = e => {
+        e.preventDefault()
+        const order = {
+            email: e.target.email.value,
+            phone: e.target.phone.value,
+            quantity: orderQuantity,
+            address: e.target.address.value
+        }
+        axios.post('http://localhost:5000/order', { order }).then(response => {
+
+            console.log(response.data);
+        })
+        let newAvailableQuantity = parseInt(product?.data.available) - orderQuantity;
+        const doc = {
+            available: newAvailableQuantity
+        }
+
+        axios.put(`http://localhost:5000/parts/${id}`, doc).then(response => {
+
+            refetch()
+        })
     }
     return (
         <div className='container sm:container my-20'>
@@ -22,13 +74,14 @@ const PurchaseSinglePage = () => {
                     <h1>Your Email: {user?.email}</h1>
                 </div>
                 <div className=''>
-                    <div class="card lg:card-side bg-base-100 shadow-xl">
+                    <div className="card lg:card-side bg-base-100 shadow-xl">
                         <figure><img className='w-full' src={products.img} alt="" /></figure>
-                        <div class="card-body">
-                            <h2 class="card-title">{products.name}</h2>
+                        <div className="card-body">
+                            <h2 className="card-title">{products.name}</h2>
                             <p>{products.des}</p>
                             <p>Minimum Order Quantity: {products.minimunOrder}</p>
                             <p>Available: {products.available}</p>
+                            <p>Price: {products.price}</p>
 
                         </div>
                     </div>
@@ -36,21 +89,26 @@ const PurchaseSinglePage = () => {
             </div>
             <div>
                 <div className='grid grid-cols-1 justify-center '>
-                    <div class="card w-full mt-20 bg-base-100 shadow-xl">
-                        <div class="card-body">
-                            <h2 class="text-4xl text-center">Order info</h2>
+                    <div className="card w-full mt-20 bg-base-100 shadow-xl">
+                        <div className="card-body">
+                            <h2 className="text-4xl text-center">Order info</h2>
 
-
-                            <input type="email" placeholder="email" disabled value={user?.email} class="input input-bordered input-xs w-full " />
-
-                            <input type="text" placeholder="Phone Number" class="input input-bordered input-sm w-full " />
-
-                            <input type="text" placeholder="Type here" class="input input-bordered input-md w-full " />
-
-                            <input type="text" placeholder="Type here" class="input input-bordered input-lg w-full" />
-                            <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
-                            </div>
+                            <form onSubmit={hanldeSubmit}>
+                                <label htmlFor="email">Email</label>
+                                <input name='email' type="email" placeholder="email" disabled value={user?.email} className="input input-bordered input-xs w-full " />
+                                <label htmlFor="phone">Phone</label>
+                                <input type="text" name='phone' placeholder="Phone Number" className="input input-bordered input-sm w-full " />
+                                <label htmlFor="quantity">Order Quantity</label>
+                                {
+                                    quantityError && <small className='text-red-500'>{quantityError}</small>
+                                }
+                                <input onChange={handleNewQuantity} name='orederQuantity' value={orderQuantity} type="number" className="input input-bordered input-md w-full " />
+                                <label htmlFor="address">Address</label>
+                                <input name='address' type="text" placeholder="Address" className="input input-bordered input-lg w-full" />
+                                <div className="card-actions justify-end">
+                                    <button disabled={buttonDisabled} type='submit' className="btn btn-primary">Order</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
