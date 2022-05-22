@@ -2,6 +2,8 @@ import React from 'react';
 import bannerImg from '../../../Assets/img/banner-img.png'
 import Parts from '../../../Parts/Parts';
 import BusinessSummary from '../../BusinessSummary/BusinessSummary';
+import GetInTouch from './GetInTouch';
+import Partners from './Partners';
 import Reviews from './Reviews';
 
 const Home = () => {
@@ -19,7 +21,9 @@ const Home = () => {
             </div>
             <Parts></Parts>
             <BusinessSummary></BusinessSummary>
+            <Partners></Partners>
             <Reviews></Reviews>
+            <GetInTouch></GetInTouch>
         </div>
     );
 };
