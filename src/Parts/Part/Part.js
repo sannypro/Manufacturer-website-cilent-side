@@ -1,8 +1,11 @@
 import axios from 'axios';
 import React from 'react';
 import { useQuery } from 'react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Part = () => {
+
+    const navigate = useNavigate()
     const { data: parts } = useQuery('parts', () => fetch('http://localhost:5000/parts').then(res => res.json()))
     console.log(parts);
     return (
@@ -17,7 +20,7 @@ const Part = () => {
                         <p className='font-bold'>Available Order Quantity: {p.available}</p>
 
                         <div class="card-actions justify-start">
-                            <button class="btn btn-primary">Order Now</button>
+                            <button onClick={() => navigate(`/purchase/${p._id}`)} class="btn btn-primary">Order Now</button>
                         </div>
                     </div>
                 </div>)

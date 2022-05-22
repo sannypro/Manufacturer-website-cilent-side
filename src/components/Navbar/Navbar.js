@@ -16,7 +16,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div class="navbar-center">
-                <a class="btn btn-ghost normal-case text-xl">Loyal Parts</a>
+                <Link to='/' class="btn btn-ghost normal-case text-xl">Loyal Parts</Link>
             </div>
             <div class="navbar-end">
                 <button class="btn btn-ghost btn-circle">
