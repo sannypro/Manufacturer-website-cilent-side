@@ -17,7 +17,7 @@ const Part = () => {
                         <p className='font-bold'>Available Order Quantity: {p.available}</p>
 
                         <div class="card-actions justify-start">
-                            <button class="btn btn-primary">Buy Now</button>
+                            <button class="btn btn-primary">Order Now</button>
                         </div>
                     </div>
                 </div>)
