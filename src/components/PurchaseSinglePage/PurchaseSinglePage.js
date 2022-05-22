@@ -46,13 +46,19 @@ const PurchaseSinglePage = () => {
     }
     const hanldeSubmit = e => {
         e.preventDefault()
+        const price = orderQuantity * parseInt(product.data.price)
+
         const order = {
             email: e.target.email.value,
             phone: e.target.phone.value,
             quantity: orderQuantity,
-            address: e.target.address.value
+            address: e.target.address.value,
+            img: product.data.img,
+            price: price,
+            name: product.data.name,
+
         }
-        axios.post('http://localhost:5000/order', { order }).then(response => {
+        axios.post('http://localhost:5000/order', order).then(response => {
 
             console.log(response.data);
         })
@@ -102,7 +108,7 @@ const PurchaseSinglePage = () => {
                                 {
                                     quantityError && <small className='text-red-500'>{quantityError}</small>
                                 }
-                                <input onChange={handleNewQuantity} name='orederQuantity' value={orderQuantity} type="number" className="input input-bordered input-md w-full " />
+                                <input required onChange={handleNewQuantity} name='orederQuantity' value={orderQuantity} type="number" className="input input-bordered input-md w-full " />
                                 <label htmlFor="address">Address</label>
                                 <input name='address' type="text" placeholder="Address" className="input input-bordered input-lg w-full" />
                                 <div className="card-actions justify-end">
