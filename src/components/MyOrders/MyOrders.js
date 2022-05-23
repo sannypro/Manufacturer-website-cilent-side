@@ -31,7 +31,7 @@ const MyOrders = () => {
                         <p className='font-bold'>Quantity: {product.quantity}</p>
                         <p className='font-bold'>Price: {product.price}</p>
                         <button onClick={() => handleDelete(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Delete</button>
-                        <button onClick={() => handlePayment(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Pay</button>
+                        <button disabled={product.payment} onClick={() => handlePayment(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">{product.payment ? <>paid</> : <>pay</>}</button>
 
                     </div>
                 </div>)

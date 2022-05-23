@@ -57,6 +57,15 @@ const CheckOutPage = () => {
                 }
                 if (result.paymentIntent) {
                     setPaymentId(result.paymentIntent.id)
+                    axios.post('http://localhost:5000/payment', {
+                        paymentId: paymentId,
+                        price: price,
+                        quantity: data?.data.quantity,
+                        email: email,
+                        name: data?.data.name
+
+                    })
+                    axios.put(`http://localhost:5000/order/${paymentID}`, { payment: true })
                 }
 
             });
@@ -68,6 +77,7 @@ const CheckOutPage = () => {
             console.log('[PaymentMethod]', paymentMethod);
             SetError('')
             setSuccess('Your Payment is completed')
+
 
         }
     }
