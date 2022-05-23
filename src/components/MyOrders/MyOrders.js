@@ -2,10 +2,12 @@ import axios from 'axios';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
+    const navigate = useNavigate()
     const [user] = useAuthState(auth)
     const email = user?.email
     const { data: orders, isLoading, refetch } = useQuery('order', () => axios.get(`http://localhost:5000/order?email=${email}`))
@@ -15,8 +17,11 @@ const MyOrders = () => {
     const handleDelete = (id) => {
         axios.delete(`http://localhost:5000/order/${id}`).then(response => refetch())
     }
+    const handlePayment = id => {
+        navigate(`/checkout/${id}`)
+    }
     return (
-        <div className=' grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
+        <div className='container sm:container grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
             {
                 orders.data.map(product => <div key={product._id} className="card lg:max-w-full  bg-base-100 shadow-xl">
                     <figure><img src={product?.img} className="w-1/2" alt="Shoes" /></figure>
@@ -26,6 +31,7 @@ const MyOrders = () => {
                         <p className='font-bold'>Quantity: {product.quantity}</p>
                         <p className='font-bold'>Price: {product.price}</p>
                         <button onClick={() => handleDelete(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Delete</button>
+                        <button onClick={() => handlePayment(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Pay</button>
 
                     </div>
                 </div>)

@@ -7,11 +7,14 @@ import Home from './components/Navbar/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 import Signup from './components/Signup/Signup';
 import RequireAuth from './RequireAuth'
-
+import CheckOutPage from './components/CheckOutPage/CheckOutPage'
 import PurchaseSinglePage from './components/PurchaseSinglePage/PurchaseSinglePage';
 import MyOrders from './components/MyOrders/MyOrders';
-
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe('pk_test_51L0j5UHw1ppVQWndFtGKSCw5rDU15PD6vBHX3o3Oi9OAtC6BF1Xak8n06YD4S8LxEl78IpklBsg7ZGrfku1vAymo00XYkGq7Yt');
 function App() {
+
   return (
     <div >
       <Navbar></Navbar>
@@ -21,6 +24,9 @@ function App() {
         <Route path='signup' element={<Signup></Signup>}></Route>
         <Route path='my-orders' element={<RequireAuth><MyOrders></MyOrders></RequireAuth>}></Route>
         <Route path='purchase/:id' element={<RequireAuth><PurchaseSinglePage></PurchaseSinglePage></RequireAuth>}></Route>
+        <Route path='checkout/:paymentID' element={<RequireAuth><Elements stripe={stripePromise}>
+          <CheckOutPage />
+        </Elements></RequireAuth>}></Route>
       </Routes>
       <Footer></Footer>
     </div >
