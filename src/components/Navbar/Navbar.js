@@ -24,7 +24,7 @@ const Navbar = () => {
                             user && <li><Link to='dashboard'>My Profile</Link></li>
                         }
                         {
-                            user && <li><Link to='dashboard'>Add Review</Link></li>
+                            user && <li><Link to='add-review'>Add Review</Link></li>
                         }
                         {
                             user && <li><button className='btn btn-ghost'>Name: {user?.displayName}</button></li>
