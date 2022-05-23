@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/AxiosPrivate';
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
@@ -23,7 +23,7 @@ const MyOrders = () => {
 
     return (
         <div className='container sm:container grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
-            <h1 className='text-center text-4xl'>Your orders : {orders.data.length}</h1>
+            <h1 className='text-center text-4xl'>Your orders : {orders?.data?.length}</h1>
             {
                 orders.data.map(product => <div key={product._id} className="card lg:max-w-full  bg-base-100 shadow-xl">
                     <figure><img src={product?.img} className="w-1/2" alt="Shoes" /></figure>

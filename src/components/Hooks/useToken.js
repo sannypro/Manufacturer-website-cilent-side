@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../api/AxiosPrivate";
 import { useEffect, useState } from "react";
 
 const useToken = user => {

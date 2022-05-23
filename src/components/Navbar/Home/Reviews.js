@@ -1,13 +1,12 @@
-import axios from 'axios';
+
+import axios from '../../api/AxiosPrivate';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/review')
-            .then(res => res.json())
-            .then(data => setReviews(data))
+        axios.get('http://localhost:5000/review').then(response => setReviews(response.data))
     }, [])
     console.log(reviews);
     return (

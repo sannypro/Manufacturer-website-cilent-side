@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
 import userImg from "../../../../Assets/img/user.png"
-import { async } from '@firebase/util';
-import axios from 'axios';
+
+import axios from '../../../api/AxiosPrivate';
 import { useQuery } from 'react-query';
 import Loading from '../../../Shared/Loading';
 import { toast } from 'react-toastify';

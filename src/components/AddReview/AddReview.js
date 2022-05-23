@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../api/AxiosPrivate';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
