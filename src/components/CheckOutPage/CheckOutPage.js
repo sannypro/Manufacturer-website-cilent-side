@@ -65,7 +65,8 @@ const CheckOutPage = () => {
                         name: data?.data.name
 
                     })
-                    axios.put(`http://localhost:5000/order/${paymentID}`, { payment: true })
+
+                    axios.put(`http://localhost:5000/order/${paymentID}`, { payment: true, paymentId: result.paymentIntent.id })
                 }
 
             });
