@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch('reviews.json')
+        fetch('http://localhost:5000/review')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
@@ -19,7 +19,7 @@ const Reviews = () => {
                     reviews.map(review => <div className="card lg:max-w-lg bg-base-100 shadow-xl">
                         <div className="card-body">
 
-                            <p>{review.comment}</p>
+
                             <div className="flex items-center ">
                                 <div className="avatar">
                                     <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 mr-5">
@@ -27,8 +27,9 @@ const Reviews = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <small>{review.name}</small>
-                                    <p>{review.location}</p>
+                                    <small>Name: {review.name}</small>
+                                    <p className='font-bold'> Comment: {review.comment}</p>
+                                    <p className='font-bold'>Rating: {review.rating}/5</p>
                                 </div>
                             </div>
                         </div>

@@ -1,45 +1,68 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const AddReview = () => {
-    const [rating1, setRatin1] = useState('')
-    const [rating2, setRatin2] = useState('')
-    const [rating3, setRatin3] = useState('')
-    const [rating4, setRatin4] = useState('')
-    const [rating5, setRatin5] = useState('')
+    const [user] = useAuthState(auth)
+    const [rating, setRating] = useState('')
+    const [ratingSelected, setRatingSelected] = useState('')
+
     const handleRating1 = () => {
-        setRatin1('1')
+        setRating('1')
+        setRatingSelected('1')
     }
     const handleRating2 = () => {
-        setRatin2('2')
+        setRating('2')
+        setRatingSelected('2')
     }
 
     const handleRating3 = () => {
-        setRatin3('3')
+        setRating('3')
+        setRatingSelected('3')
     }
     const handleRating4 = () => {
-        setRatin4('4')
+        setRating('4')
+        setRatingSelected('4')
     }
     const handleRating5 = () => {
-        setRatin5('5')
+        setRating('5')
+        setRatingSelected('5')
+    }
+    const handleSubmit = e => {
+        e.preventDefault()
+        const review = {
+            name: e.target.name.value,
+            comment: e.target.comment.value,
+            rating: rating
+        }
+        axios.post('http://localhost:5000/review', review)
     }
     return (
         <div className='container sm:container'>
             <div class="hero ">
                 <div class="hero-content ">
 
-                    <form class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <form onSubmit={handleSubmit} class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div class="card-body">
+                            <div class="form-control">
+                                <label class="label">
+                                    <span class="label-text">Name</span>
+                                </label>
+                                <input type="text" name='name' value={user?.displayName} readOnly disabled class="input input-bordered" />
+                            </div>
                             <div class="form-control">
                                 <label class="label">
                                     <span class="label-text">Comment</span>
                                 </label>
-                                <input type="text" placeholder="Comment" class="input input-bordered" />
+                                <input type="text" name='comment' placeholder="Comment" class="input input-bordered" />
                             </div>
                             <div class="form-control">
                                 <label class="label">
-                                    <span class="label-text">Rating</span>
+                                    <span class="label-text">Rating : {ratingSelected}</span>
                                 </label>
                                 <div >
+
                                     <button onClick={handleRating1} className='btn btn-outline btn-success btn-xs ml-2'>1</button>
                                     <button onClick={handleRating2} className='btn btn-outline btn-success btn-xs ml-2'>2</button>
                                     <button onClick={handleRating3} className='btn btn-outline btn-success btn-xs ml-2'>3</button>
