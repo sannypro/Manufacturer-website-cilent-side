@@ -1,8 +1,10 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../Hooks/useToken';
 import Loading from '../Shared/Loading';
 
 const Signup = () => {
@@ -16,21 +18,27 @@ const Signup = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
-    // const [token] = useToken(user || gUser)
+    const [token] = useToken(user || gUser)
+
+
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password)
         await updateProfile({ displayName: data.name });
 
+
     };
 
-    const handleGoogle = e => {
+    const handleGoogle = async (e) => {
         signInWithGoogle()
 
+
     }
-    // if (token) {
-    //     navigate('/appointment')
-    // }
+    console.log(token);
+    if (token) {
+        navigate('/my-orders')
+        console.log(token);
+    }
     let signInErrorMessage;
     if (loading || gLoading || updating) {
         return <Loading></Loading>
@@ -39,6 +47,9 @@ const Signup = () => {
     if (error || gError || updateError) {
         signInErrorMessage = <p className="text-red-500"><small>{error?.message || gError?.message || updateError?.message}</small></p>
     }
+
+
+
     return (
         <div className="hero min-h-screen ">
             <div className="hero-content flex-col">

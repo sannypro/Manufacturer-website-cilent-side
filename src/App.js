@@ -1,6 +1,7 @@
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
 import Home from './components/Navbar/Home/Home';
@@ -14,6 +15,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import AddReview from './components/AddReview/AddReview';
 import MyProfile from './components/Navbar/Home/MyProfile/MyProfile';
+import { ToastContainer } from 'react-toastify';
 const stripePromise = loadStripe('pk_test_51L0j5UHw1ppVQWndFtGKSCw5rDU15PD6vBHX3o3Oi9OAtC6BF1Xak8n06YD4S8LxEl78IpklBsg7ZGrfku1vAymo00XYkGq7Yt');
 function App() {
 
@@ -33,6 +35,7 @@ function App() {
         </Elements></RequireAuth>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
     </div >
   );
 }

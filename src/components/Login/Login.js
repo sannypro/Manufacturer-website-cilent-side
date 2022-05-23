@@ -1,8 +1,10 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../Hooks/useToken';
 import Loading from '../Shared/Loading';
 
 const Login = () => {
@@ -17,12 +19,12 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    // const [token] = useToken(user || gUser)
-    // useEffect(() => {
-    //     if (token) {
-    //         navigate(from, { replace: true });
-    //     }
-    // }, [token, from, navigate])
+    const [token] = useToken(user || gUser)
+    useEffect(() => {
+        if (token) {
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate])
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
@@ -36,10 +38,11 @@ const Login = () => {
     if (error || gError) {
         signInErrorMessage = <p className="text-red-500"><small>{error?.message || gError?.message}</small></p>
     }
-    const handleGoogle = e => {
+    const handleGoogle = async (e) => {
         signInWithGoogle()
 
     }
+
 
     return (
         <div>

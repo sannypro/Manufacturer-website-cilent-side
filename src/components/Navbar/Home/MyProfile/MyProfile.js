@@ -1,30 +1,86 @@
-import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React, { useEffect } from 'react';
+import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
 import userImg from "../../../../Assets/img/user.png"
+import { async } from '@firebase/util';
+import axios from 'axios';
+import { useQuery } from 'react-query';
+import Loading from '../../../Shared/Loading';
+import { toast } from 'react-toastify';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth);
+    const [updateProfile, updating, error] = useUpdateProfile(auth);
+
+    const { data: userData, isLoading, refetch } = useQuery('user', () => axios.get(`http://localhost:5000/user?email=${user?.email}`))
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+
+    console.log(userData);
+    const handleUpdate = async (e) => {
+        e.preventDefault()
+        const name = e.target.name.value
+        const address = e.target.address.value
+        const phone = e.target.phone.value
+
+        const linkedin = e.target.linkedin.value
+
+        await updateProfile({ displayName: name });
+        await axios.put(`http://localhost:5000/user-update?email=${user?.email}`, { name, address, phone, linkedin, email: user.email })
+        refetch()
+        toast.success("Update Successfully")
+        e.target.name.value = ''
+        e.target.address.value = ''
+        e.target.phone.value = ''
+        e.target.linkedin.value = ''
+
+
+    }
+
     return (
         <div className='container sm:conatiner'>
             <div class="card card-side bg-base-100 shadow-xl">
-                <figure><img src={userImg} alt="" /></figure>
-                <div class="card-body">
+                <figure ><img src={userImg} alt="" /></figure>
+                <div class="card-body items-center">
                     <h2 class="card-title">User Name: {user?.displayName}</h2>
                     <h2 class="card-title">User Email: {user?.email}</h2>
-                    <h2 class="card-title">User address: {user?.address}</h2>
-                    <h2 class="card-title">User Phone: {user?.phone}</h2>
+                    <h2 class="card-title">User address: {userData.data.address}</h2>
+                    <h2 class="card-title">User Phone: {userData.data.phone}</h2>
+                    <h2 class="card-title">User Linkedin: {userData.data.linkedin}</h2>
                 </div>
             </div>
             <div className='flex justify-center my-10'>
-                <div class="card w-4xl bg-base-100 shadow-xl">
-                    <div class="card-body">
+                <div class="card sm:w-9/12 bg-base-100 shadow-xl">
+                    <form onSubmit={handleUpdate} class="card-body">
                         <h2 class="card-title">Want to Update Profile</h2>
-
-                        <div class="card-actions justify-center">
-                            <button class="btn btn-primary">Buy Now</button>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Name</span>
+                            </label>
+                            <input required type="text" name='name' class="input input-bordered" />
+                        </div><div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Address</span>
+                            </label>
+                            <input required type="text" name='address' class="input input-bordered" />
                         </div>
-                    </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Phone</span>
+                            </label>
+                            <input required type="text" name='phone' class="input input-bordered" />
+                        </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">LinkedIn Profile link</span>
+                            </label>
+                            <input required type="text" name='linkedin' class="input input-bordered" />
+                        </div>
+                        <div class="card-actions justify-center">
+                            <button type='submit' class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
