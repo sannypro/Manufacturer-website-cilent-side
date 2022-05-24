@@ -21,15 +21,7 @@ const Navbar = () => {
                         {
                             user && <li><Link to='dashboard'>Dashboard</Link></li>
                         }
-                        {
-                            user && <li><Link to='dashboard'>My Orders</Link></li>
-                        }
-                        {
-                            user && <li><Link to='my-profile'>My Profile</Link></li>
-                        }
-                        {
-                            user && <li><Link to='add-review'>Add Review</Link></li>
-                        }
+
                         {
                             user && <li><button className='btn btn-ghost'>Name: {user?.displayName}</button></li>
                         }
@@ -40,22 +32,14 @@ const Navbar = () => {
                 </div>
                 <Link to='/' class="btn btn-ghost normal-case text-xl">Loyal Parts</Link>
             </div>
-            <div class="navbar-center hidden lg:flex">
-                <ul class="menu menu-horizontal p-0">
+            <div class="navbar-center lg:justify-end hidden lg:flex">
+                <ul class="menu justify-end menu-horizontal p-0">
 
 
                     {
                         user && <li><Link to='dashboard'>Dashboard</Link></li>
                     }
-                    {
-                        user && <li><Link to='my-orders'>My Orders</Link></li>
-                    }
-                    {
-                        user && <li><Link to='my-profile'>My Profile</Link></li>
-                    }
-                    {
-                        user && <li><Link to='add-review'>Add Review</Link></li>
-                    }
+
                     {
                         user && <li><button className='btn btn-link'>Name: {user?.displayName}</button></li>
                     }

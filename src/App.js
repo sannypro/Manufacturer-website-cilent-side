@@ -17,6 +17,7 @@ import AddReview from './components/AddReview/AddReview';
 import MyProfile from './components/Navbar/Home/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './components/Dashboard/Dashboard';
+import User from './components/User/User';
 const stripePromise = loadStripe('pk_test_51L0j5UHw1ppVQWndFtGKSCw5rDU15PD6vBHX3o3Oi9OAtC6BF1Xak8n06YD4S8LxEl78IpklBsg7ZGrfku1vAymo00XYkGq7Yt');
 function App() {
 
@@ -30,8 +31,10 @@ function App() {
 
         <Route path='dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
           <Route path='my-profile' element={<RequireAuth><MyProfile></MyProfile></RequireAuth>}></Route>
-          <Route index element={<RequireAuth><MyOrders></MyOrders></RequireAuth>}></Route>
-          <Route path='add-review' element={<RequireAuth><AddReview></AddReview></RequireAuth>}></Route>
+          <Route index element={<MyOrders></MyOrders>}></Route>
+          <Route path='my-orders' element={<MyOrders></MyOrders>}></Route>
+          <Route path='add-review' element={<AddReview></AddReview>}></Route>
+          <Route path='user' element={<User></User>}></Route>
         </Route>
         <Route path='purchase/:id' element={<RequireAuth><PurchaseSinglePage></PurchaseSinglePage></RequireAuth>}></Route>
 
@@ -39,7 +42,7 @@ function App() {
         <Route path='checkout/:paymentID' element={<RequireAuth><Elements stripe={stripePromise}>
           <CheckOutPage />
         </Elements></RequireAuth>}></Route>
-      </Routes>
+      </Routes >
       <Footer></Footer>
       <ToastContainer></ToastContainer>
     </div >
