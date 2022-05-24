@@ -21,10 +21,12 @@ const Navbar = () => {
                         {
                             user && <li><Link to='dashboard'>Dashboard</Link></li>
                         }
+                        <li><Link to='blogs'>Blogs</Link></li>
 
                         {
                             user && <li><button className='btn btn-ghost'>Name: {user?.displayName}</button></li>
                         }
+
                         {
                             user ? <li><button onClick={logOut} className='btn   btn-error' >Sign Out</button></li> : <li><Link to='login'>Login</Link></li>
                         }
@@ -39,13 +41,16 @@ const Navbar = () => {
                     {
                         user && <li><Link to='dashboard'>Dashboard</Link></li>
                     }
+                    <li><Link to='blogs'>Blogs</Link></li>
 
                     {
                         user && <li><button className='btn btn-link'>Name: {user?.displayName}</button></li>
                     }
+
                     {
                         user ? <li><button onClick={logOut} className='btn   btn-error' >Sign Out</button></li> : <li><Link to='login'>Login</Link></li>
                     }
+
 
                 </ul>
             </div>

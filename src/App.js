@@ -22,6 +22,7 @@ import RequireAdmin from './components/Dashboard/RequireAdmin';
 import AddProduct from './components/AddProduct/AddProduct';
 import ManageAllOrders from './components/ManageAllOrders/ManageAllOrders';
 import ManageProducts from './components/ManageProducts/ManageProducts';
+import Blogs from './components/Blogs/Blogs';
 const stripePromise = loadStripe('pk_test_51L0j5UHw1ppVQWndFtGKSCw5rDU15PD6vBHX3o3Oi9OAtC6BF1Xak8n06YD4S8LxEl78IpklBsg7ZGrfku1vAymo00XYkGq7Yt');
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='login' element={<Login></Login>}></Route>
         <Route path='signup' element={<Signup></Signup>}></Route>
+        <Route path='blogs' element={<Blogs></Blogs>}></Route>
 
         <Route path='dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
           <Route path='my-profile' element={<RequireAuth><MyProfile></MyProfile></RequireAuth>}></Route>
