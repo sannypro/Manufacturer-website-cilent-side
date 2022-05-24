@@ -23,6 +23,7 @@ import AddProduct from './components/AddProduct/AddProduct';
 import ManageAllOrders from './components/ManageAllOrders/ManageAllOrders';
 import ManageProducts from './components/ManageProducts/ManageProducts';
 import Blogs from './components/Blogs/Blogs';
+import NotFound from './components/NotFound/NotFound';
 const stripePromise = loadStripe('pk_test_51L0j5UHw1ppVQWndFtGKSCw5rDU15PD6vBHX3o3Oi9OAtC6BF1Xak8n06YD4S8LxEl78IpklBsg7ZGrfku1vAymo00XYkGq7Yt');
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
         <Route path='checkout/:paymentID' element={<RequireAuth><Elements stripe={stripePromise}>
           <CheckOutPage />
         </Elements></RequireAuth>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes >
       <Footer></Footer>
       <ToastContainer></ToastContainer>
