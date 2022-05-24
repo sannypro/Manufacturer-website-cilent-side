@@ -11,8 +11,15 @@ const ManageAllOrders = () => {
     }
     console.log(data);
     const orders = data.data
-    const handleShipped = async (id) => {
-        await axios.put(`http://localhost:5000/orders/${id}`, { status: 'shipped' })
+    const handleShipped = async (id, status) => {
+        if (!status) {
+            await axios.put(`http://localhost:5000/orders/${id}`, { status: 'shipped' })
+                .then(response => console.log(response.data))
+            refetch()
+        }
+    }
+    const handleCancel = async (id) => {
+        await axios.delete(`http://localhost:5000/order/${id}`)
         refetch()
     }
     return (
@@ -26,6 +33,7 @@ const ManageAllOrders = () => {
                         <th>Email</th>
                         <th >Name</th>
                         <th >Status</th>
+                        <th >Cancel Order</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +45,10 @@ const ManageAllOrders = () => {
                             <td>{order.email}</td>
                             <td>{order.name}</td>
                             {
-                                order.payment ? <td><button onClick={() => handleShipped(order._id)} className={`btn font-bold${!order.status && 'btn btn-warning'} ${order.status && "btn-success"}`}>{order.status ? 'Shipped' : 'Pending'}</button></td> : <td><button className='btn btn-error'>Unpaid</button></td>
+                                order.payment ? <td><button onClick={() => handleShipped(order._id, order.status)} className={`btn font-bold${!order.status && 'btn btn-warning'} ${order.status && "btn-success"}`}>{order.status ? 'Shipped' : 'Pending'}</button></td> : <td><button className='btn btn-accent'>Unpaid</button></td>
+                            }
+                            {
+                                !order.payment ? <td><button onClick={() => handleCancel(order._id)} className='btn btn-error'>Cancel</button></td> : <td><button className='btn btn-outline' disabled>Cancel</button></td>
                             }
 
 
