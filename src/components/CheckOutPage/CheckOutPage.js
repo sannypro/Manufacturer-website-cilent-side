@@ -86,7 +86,7 @@ const CheckOutPage = () => {
         <div>
             <div className='flex justify-center my-12'>
 
-                <div className="card lg:max-w-full  bg-base-100 shadow-xl">
+                <div className="card lg:w-1/2 w-full  bg-base-100 shadow-xl">
 
                     <div className="card-body">
                         <h2 className="card-title">{data?.data.name}</h2>
