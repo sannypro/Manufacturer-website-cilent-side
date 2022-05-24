@@ -22,25 +22,28 @@ const MyOrders = () => {
     }
 
     return (
-        <div className='container sm:container grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
+        <div>
             <h1 className='text-center text-4xl'>Your orders : {orders?.data?.length}</h1>
-            {
-                orders.data.map(product => <div key={product._id} className="card lg:max-w-full  bg-base-100 shadow-xl">
-                    <figure><img src={product?.img} className="w-1/2" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">{product.name}</h2>
-                        <p>{product.des}</p>
-                        <p className='font-bold'>Quantity: {product.quantity}</p>
-                        <p className='font-bold'>Price: {product.price}</p>
-                        {
-                            product.paymentId && <p className='font-bold text-green-600'>Payment id: {product.paymentId}</p>
-                        }
-                        <button onClick={() => handleDelete(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Delete</button>
-                        <button disabled={product.payment} onClick={() => handlePayment(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">{product.payment ? <>paid</> : <>pay</>}</button>
+            <div className='container sm:container grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
 
-                    </div>
-                </div>)
-            }
+                {
+                    orders.data.map(product => <div key={product._id} className="card w-full  bg-base-100 shadow-xl">
+                        <figure><img src={product?.img} className="w-1/2" alt="Shoes" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{product.name}</h2>
+                            <p>{product.des}</p>
+                            <p className='font-bold'>Quantity: {product.quantity}</p>
+                            <p className='font-bold'>Price: {product.price}</p>
+                            {
+                                product.paymentId && <p className='font-bold lg:text-xs flex flex-wrap text-green-600'>Payment id: {product.paymentId}</p>
+                            }
+                            <button onClick={() => handleDelete(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Delete</button>
+                            <button disabled={product.payment} onClick={() => handlePayment(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">{product.payment ? <>paid</> : <>pay</>}</button>
+
+                        </div>
+                    </div>)
+                }
+            </div>
         </div>
     );
 };
