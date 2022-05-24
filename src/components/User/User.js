@@ -5,7 +5,7 @@ import Loading from '../Shared/Loading';
 import { async } from '@firebase/util';
 
 const User = () => {
-    const { data: user, isLoading, refetch } = useQuery('user', () => axios.get('http://localhost:5000/all-user'))
+    const { data: user, isLoading, refetch } = useQuery('all-user', async () => await axios.get('http://localhost:5000/all-user'))
 
 
     if (isLoading) {
@@ -15,6 +15,9 @@ const User = () => {
         await axios.put(`http://localhost:5000/user/admin/${email}`).then(response => console.log(response))
         refetch()
     }
+    const users = user.data
+
+    console.log('=================', user);
     return (
         <div class="overflow-x-auto">
             <h1 className="text-4xl"> All user : {user.data.length}</h1>
@@ -31,11 +34,11 @@ const User = () => {
                 <tbody>
 
                     {
-                        user?.data.map((u, index) => <tr key={user._id}>
+                        users?.length > 0 && users.map((user, index) => <tr key={user._id}>
                             <th>{index + 1}</th>
 
-                            <td>{u.email}</td>
-                            <td>{u.role !== 'admin' && <button onClick={() => makeAdmin(u.email)} className='btn-sm btn mr-4'>Make Admin</button>}</td>
+                            <td>{user.email}</td>
+                            <td>{user.role !== 'admin' && <button onClick={() => makeAdmin(user.email)} className='btn-sm btn mr-4'>Make Admin</button>}</td>
 
                             <td><button className='btn-sm btn'>Delete user</button></td>
 

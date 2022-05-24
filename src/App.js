@@ -18,6 +18,10 @@ import MyProfile from './components/Navbar/Home/MyProfile/MyProfile';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './components/Dashboard/Dashboard';
 import User from './components/User/User';
+import RequireAdmin from './components/Dashboard/RequireAdmin';
+import AddProduct from './components/AddProduct/AddProduct';
+import ManageAllOrders from './components/ManageAllOrders/ManageAllOrders';
+import ManageProducts from './components/ManageProducts/ManageProducts';
 const stripePromise = loadStripe('pk_test_51L0j5UHw1ppVQWndFtGKSCw5rDU15PD6vBHX3o3Oi9OAtC6BF1Xak8n06YD4S8LxEl78IpklBsg7ZGrfku1vAymo00XYkGq7Yt');
 function App() {
 
@@ -34,7 +38,10 @@ function App() {
           <Route index element={<MyOrders></MyOrders>}></Route>
           <Route path='my-orders' element={<MyOrders></MyOrders>}></Route>
           <Route path='add-review' element={<AddReview></AddReview>}></Route>
-          <Route path='user' element={<User></User>}></Route>
+          <Route path='user' element={<RequireAdmin><User></User></RequireAdmin>}></Route>
+          <Route path='add-product' element={<RequireAdmin><AddProduct></AddProduct></RequireAdmin>}></Route>
+          <Route path='manage-all-orders' element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>}></Route>
+          <Route path='manage-products' element={<RequireAdmin><ManageProducts></ManageProducts></RequireAdmin>}></Route>
         </Route>
         <Route path='purchase/:id' element={<RequireAuth><PurchaseSinglePage></PurchaseSinglePage></RequireAuth>}></Route>
 

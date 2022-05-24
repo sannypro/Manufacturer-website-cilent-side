@@ -8,6 +8,7 @@ const Dashboard = () => {
 
     const [user] = useAuthState(auth)
     const [admin] = useAdmin(user)
+    console.log(admin);
     return (
         <div class="drawer  drawer-mobile">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -24,7 +25,16 @@ const Dashboard = () => {
                     <li><Link to='add-review'>Add Review</Link></li>
                     <li><Link to='my-orders'>My Orders</Link></li>
                     {
-                        admin && <li><Link to='user'>All User</Link></li>
+                        admin.admin && <li><Link to='user'>Make Admin</Link></li>
+                    }
+                    {
+                        admin.admin && <li><Link to='add-product'>Add Product</Link></li>
+                    }
+                    {
+                        admin.admin && <li><Link to='manage-all-orders'>Manage All Orders</Link></li>
+                    }
+                    {
+                        admin.admin && <li><Link to='manage-products'>Manage Products</Link></li>
                     }
                 </ul>
 

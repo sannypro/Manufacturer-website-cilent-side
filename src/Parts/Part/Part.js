@@ -17,7 +17,7 @@ const Part = () => {
         <div className=' grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
             {
                 parts.map(product => <div key={product._id} className="card lg:max-w-full  bg-base-100 shadow-xl">
-                    <figure><img src={product?.img} className="w-1/2" alt="Shoes" /></figure>
+                    <figure><img src={product?.img} className="w-full" alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{product.name}</h2>
                         <p>{product.des}</p>
