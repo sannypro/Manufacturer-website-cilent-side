@@ -40,14 +40,14 @@ const MyProfile = () => {
 
     return (
         <div className='container sm:conatiner'>
-            <div class="card card-side bg-base-100 shadow-xl">
+            <div class="card lg:card-side bg-base-100 shadow-xl">
                 <figure ><img src={userImg} alt="" /></figure>
                 <div class="card-body items-center">
-                    <h2 class="card-title">User Name: {user?.displayName}</h2>
-                    <h2 class="card-title">User Email: {user?.email}</h2>
-                    <h2 class="card-title">User address: {userData.data.address}</h2>
-                    <h2 class="card-title">User Phone: {userData.data.phone}</h2>
-                    <h2 class="card-title">User Linkedin: {userData.data.linkedin}</h2>
+                    <h2 class="lg:card-title">User Name: {user?.displayName}</h2>
+                    <h2 class="lg:card-title">User Email: {user?.email}</h2>
+                    <h2 class="lg:card-title">User address: {userData.data.address}</h2>
+                    <h2 class="lg:card-title">User Phone: {userData.data.phone}</h2>
+                    <h2 class="lg:card-title">User Linkedin: {userData.data.linkedin}</h2>
                 </div>
             </div>
             <div className='flex justify-center my-10'>
