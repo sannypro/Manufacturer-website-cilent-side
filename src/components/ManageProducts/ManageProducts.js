@@ -1,23 +1,23 @@
 import axios from '../api/AxiosPrivate';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import { async } from '@firebase/util';
+import DeleteConfirmModal from '../DeleteConfirmModal/DeleteConfirmModal';
 
 const ManageProducts = () => {
+    const [product, setProduct] = useState(null)
     const { data, isLoading, refetch } = useQuery("parts", () => axios.get('http://localhost:5000/parts'))
     if (isLoading) {
         return <Loading></Loading>
     }
-    const handleDelete = async (id) => {
-        await axios.delete(`http://localhost:5000/part/${id}`)
-        refetch()
-    }
+
     const products = data.data
+    console.log(product);
     return (
-        <div className='container'>
+        <div className=''>
             <div class="overflow-x-auto">
-                <h1 className="text-4xl"> All user : </h1>
+                <h1 className="text-4xl"> All Product :{products.length} </h1>
                 <table class="table table-zebra w-full">
 
                     <thead>
@@ -40,12 +40,14 @@ const ManageProducts = () => {
                                 <td>{product.minimunOrder}</td>
                                 <td>{product.available}</td>
                                 <td>{product.price}</td>
-                                <td><button onClick={() => handleDelete(product._id)} className='btn btn-error'>Delete Product</button></td>
+                                <td><label onClick={() => setProduct(product)} for="delete-confirm-modal" className='btn btn-error'>Delete Product</label></td>
                             </tr>
 
                             )
                         }
-
+                        {
+                            product && <DeleteConfirmModal refetch={refetch} product={product}></DeleteConfirmModal>
+                        }
                     </tbody>
                 </table>
             </div>
