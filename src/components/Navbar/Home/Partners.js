@@ -12,7 +12,7 @@ const Partners = () => {
             <h1 className="text-6xl text-center mb-16">
                 Our Partners
             </h1>
-            <div className='grid grid-cols-1 justify-items-center lg:grid-cols-3'>
+            <div className='grid grid-cols-1 justify-items-center gap-5 lg:grid-cols-4'>
                 {
                     partners.map(p => <div key={p._id}>
 

@@ -37,6 +37,7 @@ const ManageAllOrders = () => {
                         <th>Email</th>
                         <th >Name</th>
                         <th >Status</th>
+                        <th >Action</th>
                         <th >Cancel Order</th>
                     </tr>
                 </thead>
@@ -49,7 +50,10 @@ const ManageAllOrders = () => {
                             <td>{order.email}</td>
                             <td>{order.name}</td>
                             {
-                                order.payment ? <td><button onClick={() => handleShipped(order._id, order.status)} className={`btn font-bold${!order.status && 'btn btn-warning'} ${order.status && "btn-success"}`}>{order.status ? 'Shipped' : 'Pending'}</button></td> : <td><button className='btn btn-accent'>Unpaid</button></td>
+                                order.payment ? <td><button className={`btn font-bold${!order.status && 'btn btn-warning'} ${order.status && "btn-success"}`}>{order.status ? 'Shipped' : 'Pending'}</button></td> : <td><button className='btn btn-accent'>Unpaid</button></td>
+                            }
+                            {
+                                <td><button className='btn btn-success' disabled={!order.payment || order.status} onClick={() => handleShipped(order._id, order.status)}> Ship Now</button></td>
                             }
                             {
                                 !order.payment ? <td><label for="delete-confirm-modal-orders" onClick={() => setOrdersForModal(order)} className='btn btn-error'>Cancel</label></td> : <td><button className='btn btn-outline' disabled>Cancel</button></td>

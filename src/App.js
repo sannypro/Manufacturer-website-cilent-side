@@ -24,6 +24,7 @@ import ManageAllOrders from './components/ManageAllOrders/ManageAllOrders';
 import ManageProducts from './components/ManageProducts/ManageProducts';
 import Blogs from './components/Blogs/Blogs';
 import NotFound from './components/NotFound/NotFound';
+import MyPortfolio from './components/MyPortfolio/MyPortfolio';
 const stripePromise = loadStripe('pk_test_51L0j5UHw1ppVQWndFtGKSCw5rDU15PD6vBHX3o3Oi9OAtC6BF1Xak8n06YD4S8LxEl78IpklBsg7ZGrfku1vAymo00XYkGq7Yt');
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='login' element={<Login></Login>}></Route>
+        <Route path='my-portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='signup' element={<Signup></Signup>}></Route>
         <Route path='blogs' element={<Blogs></Blogs>}></Route>
 

@@ -46,7 +46,7 @@ const MyOrders = () => {
                     </div>)
                 }
                 {
-                    ordersForModal && <DeleteConfirmModal orderDeleteRefetch={refetch} ordersForModal={ordersForModal}></DeleteConfirmModal>
+                    ordersForModal && <DeleteConfirmModal ordersForModal={ordersForModal} orderDeleteRefetch={refetch}></DeleteConfirmModal>
                 }
             </div>
         </div>

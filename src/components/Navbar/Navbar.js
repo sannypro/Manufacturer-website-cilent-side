@@ -22,6 +22,7 @@ const Navbar = () => {
                             user && <li><Link to='dashboard'>Dashboard</Link></li>
                         }
                         <li><Link to='blogs'>Blogs</Link></li>
+                        <li><Link to='my-portfolio'>Portfolio</Link></li>
 
                         {
                             user && <li><button className='btn btn-ghost'>Name: {user?.displayName}</button></li>
@@ -42,6 +43,7 @@ const Navbar = () => {
                         user && <li><Link to='dashboard'>Dashboard</Link></li>
                     }
                     <li><Link to='blogs'>Blogs</Link></li>
+                    <li><Link to='my-portfolio'>Portfolio</Link></li>
 
                     {
                         user && <li><button className='btn btn-link'>Name: {user?.displayName}</button></li>

@@ -1,12 +1,16 @@
 
-import axios from '../../api/AxiosPrivate';
+import axios from "axios";
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/review').then(response => setReviews(response.data))
+        axios.get('http://localhost:5000/review', {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        }).then(response => setReviews(response.data))
     }, [])
     console.log(reviews);
     return (

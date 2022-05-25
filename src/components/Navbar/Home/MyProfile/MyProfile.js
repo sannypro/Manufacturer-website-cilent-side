@@ -3,7 +3,7 @@ import { useAuthState, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../../firebase.init';
 import userImg from "../../../../Assets/img/user.png"
 
-import axios from '../../../api/AxiosPrivate';
+import axios from "axios";
 import { useQuery } from 'react-query';
 import Loading from '../../../Shared/Loading';
 import { toast } from 'react-toastify';
@@ -12,7 +12,11 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const [updateProfile, updating, error] = useUpdateProfile(auth);
 
-    const { data: userData, isLoading, refetch } = useQuery('user', () => axios.get(`http://localhost:5000/user?email=${user?.email}`))
+    const { data: userData, isLoading, refetch } = useQuery('user', () => axios.get(`http://localhost:5000/user?email=${user?.email}`, {
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }))
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -27,7 +31,11 @@ const MyProfile = () => {
         const linkedin = e.target.linkedin.value
 
         await updateProfile({ displayName: name });
-        await axios.put(`http://localhost:5000/user-update?email=${user?.email}`, { name, address, phone, linkedin, email: user.email })
+        await axios.put(`http://localhost:5000/user-update?email=${user?.email}`, { name, address, phone, linkedin, email: user.email }, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
         refetch()
         toast.success("Update Successfully")
         e.target.name.value = ''

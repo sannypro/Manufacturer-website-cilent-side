@@ -11,16 +11,19 @@ const Part = () => {
             .then(data => setParts(data))
     }, [])
     const navigate = useNavigate()
-    console.log(parts);
+    const sliceParts = parts.slice(0, 3)
+
 
     return (
         <div className=' grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
             {
-                parts.map(product => <div key={product._id} className="card lg:max-w-full  bg-base-100 shadow-xl">
-                    <figure><img src={product?.img} className="w-1/2" alt="Shoes" /></figure>
+                sliceParts.map(product => <div key={product._id} className="card lg:max-w-full  bg-base-100 shadow-xl">
+                    <figure><img src={product?.img} className="w-full" alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{product.name}</h2>
-                        <p>{product.des}</p>
+                        <div class="tooltip" data-tip={product.des}>
+                            <button class="btn btn-ghost mb-10">{product.des.slice(0, 150)}</button>
+                        </div>
                         <p className='font-bold'>Minimum Order Quantity: {product.minimunOrder}</p>
                         <p className='font-bold'>Available Order Quantity: {product.available}</p>
                         <p className='font-bold'>Price: {product.price}</p>
