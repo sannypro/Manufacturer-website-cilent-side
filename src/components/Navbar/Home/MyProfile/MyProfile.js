@@ -12,7 +12,7 @@ const MyProfile = () => {
     const [user] = useAuthState(auth);
     const [updateProfile, updating, error] = useUpdateProfile(auth);
 
-    const { data: userData, isLoading, refetch } = useQuery('user', () => axios.get(`http://localhost:5000/user?email=${user?.email}`, {
+    const { data: userData, isLoading, refetch } = useQuery('user', () => axios.get(`https://fathomless-refuge-70069.herokuapp.com/user?email=${user?.email}`, {
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -31,7 +31,7 @@ const MyProfile = () => {
         const linkedin = e.target.linkedin.value
 
         await updateProfile({ displayName: name });
-        await axios.put(`http://localhost:5000/user-update?email=${user?.email}`, { name, address, phone, linkedin, email: user.email }, {
+        await axios.put(`https://fathomless-refuge-70069.herokuapp.com/user-update?email=${user?.email}`, { name, address, phone, linkedin, email: user.email }, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }

@@ -9,7 +9,7 @@ import Reviews from './Reviews';
 const Home = () => {
     return (
         <div>
-            <div className="hero min-h-screen bg-base-200">
+            <div className="hero min-h-screen bg-primary text-white">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src={bannerImg} className="lg:max-w-full xs:max-w-xs rounded-lg " alt='' />
                     <div className='lg:container sm:container '>

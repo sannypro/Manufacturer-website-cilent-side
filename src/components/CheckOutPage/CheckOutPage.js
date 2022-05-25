@@ -10,7 +10,7 @@ const CheckOutPage = () => {
 
     const [error, SetError] = useState('')
     const { paymentID } = useParams();
-    const { data, isLoading } = useQuery(['order', paymentID], () => axios.get(`http://localhost:5000/order/${paymentID}`))
+    const { data, isLoading } = useQuery(['order', paymentID], () => axios.get(`https://fathomless-refuge-70069.herokuapp.com/order/${paymentID}`))
     const [clientSecret, setClientSecret] = useState("");
     const [success, setSuccess] = useState('')
     const [paymentId, setPaymentId] = useState('')
@@ -20,7 +20,7 @@ const CheckOutPage = () => {
     const price = parseInt(data?.data.price)
     const email = data?.data.email
     useEffect(() => {
-        axios.post(`http://localhost:5000/create-payment-intent`, { price }).then(response => setClientSecret(response.data.clientSecret))
+        axios.post(`https://fathomless-refuge-70069.herokuapp.com/create-payment-intent`, { price }).then(response => setClientSecret(response.data.clientSecret))
     }, [price]);
     if (isLoading) {
         return <Loading></Loading>
@@ -57,7 +57,7 @@ const CheckOutPage = () => {
                 }
                 if (result.paymentIntent) {
                     setPaymentId(result.paymentIntent.id)
-                    axios.post('http://localhost:5000/payment', {
+                    axios.post('https://fathomless-refuge-70069.herokuapp.com/payment', {
                         paymentId: paymentId,
                         price: price,
                         quantity: data?.data.quantity,
@@ -66,7 +66,7 @@ const CheckOutPage = () => {
 
                     })
 
-                    axios.put(`http://localhost:5000/order/${paymentID}`, { payment: true, paymentId: result.paymentIntent.id })
+                    axios.put(`https://fathomless-refuge-70069.herokuapp.com/order/${paymentID}`, { payment: true, paymentId: result.paymentIntent.id })
                 }
 
             });

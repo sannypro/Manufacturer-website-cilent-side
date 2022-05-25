@@ -36,7 +36,7 @@ const AddReview = () => {
             comment: e.target.comment.value,
             rating: rating
         }
-        axios.post('http://localhost:5000/review', review)
+        axios.post('https://fathomless-refuge-70069.herokuapp.com/review', review)
     }
     return (
         <div className='container sm:container'>

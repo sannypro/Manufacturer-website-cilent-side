@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Part = () => {
     const [parts, setParts] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/parts')
+        fetch('https://fathomless-refuge-70069.herokuapp.com/parts')
             .then(res => res.json())
             .then(data => setParts(data))
     }, [])
@@ -15,7 +15,7 @@ const Part = () => {
 
 
     return (
-        <div className=' grid lg:grid-cols-3 grid-cols-1 gap-5 pr-[-32px] '>
+        <div className=' grid lg:grid-cols-3 grid-cols-1 mt-10 gap-5 pr-[-32px] '>
             {
                 sliceParts.map(product => <div key={product._id} className="card lg:max-w-full  bg-base-100 shadow-xl">
                     <figure><img src={product?.img} className="w-full" alt="Shoes" /></figure>

@@ -6,7 +6,7 @@ import Part from './Part/Part';
 const Parts = () => {
 
     return (
-        <div className='container sm:container'>
+        <div className='container mt-10 sm:container'>
             <h1 className='text-4xl text-center'>
                 Car Parts
             </h1>

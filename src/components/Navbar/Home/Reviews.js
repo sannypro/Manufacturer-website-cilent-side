@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:5000/review', {
+        axios.get('https://fathomless-refuge-70069.herokuapp.com/review', {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }

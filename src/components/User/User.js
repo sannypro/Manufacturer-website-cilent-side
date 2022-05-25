@@ -5,14 +5,14 @@ import Loading from '../Shared/Loading';
 import { async } from '@firebase/util';
 
 const User = () => {
-    const { data: user, isLoading, refetch } = useQuery('all-user', async () => await axios.get('http://localhost:5000/all-user'))
+    const { data: user, isLoading, refetch } = useQuery('all-user', async () => await axios.get('https://fathomless-refuge-70069.herokuapp.com/all-user'))
 
 
     if (isLoading) {
         return <Loading></Loading>
     }
     const makeAdmin = async (email) => {
-        await axios.put(`http://localhost:5000/user/admin/${email}`).then(response => console.log(response))
+        await axios.put(`https://fathomless-refuge-70069.herokuapp.com/user/admin/${email}`).then(response => console.log(response))
         refetch()
     }
     const users = user.data
