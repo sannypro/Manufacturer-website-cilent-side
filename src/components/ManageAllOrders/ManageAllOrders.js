@@ -1,25 +1,29 @@
 import axios from '../api/AxiosPrivate';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import { async } from '@firebase/util';
+import { toast } from 'react-toastify';
+import DeleteConfirmModal from '../DeleteConfirmModal/DeleteConfirmModal';
 
 const ManageAllOrders = () => {
+    const [ordersForModal, setOrdersForModal] = useState(null)
     const { data, isLoading, refetch } = useQuery('orders', () => axios.get('http://localhost:5000/orders'))
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(data);
+
     const orders = data.data
     const handleShipped = async (id, status) => {
         if (!status) {
             await axios.put(`http://localhost:5000/orders/${id}`, { status: 'shipped' })
                 .then(response => console.log(response.data))
             refetch()
+            toast.success("items shipped")
         }
     }
     const handleCancel = async (id) => {
-        await axios.delete(`http://localhost:5000/order/${id}`)
+
         refetch()
     }
     return (
@@ -48,7 +52,7 @@ const ManageAllOrders = () => {
                                 order.payment ? <td><button onClick={() => handleShipped(order._id, order.status)} className={`btn font-bold${!order.status && 'btn btn-warning'} ${order.status && "btn-success"}`}>{order.status ? 'Shipped' : 'Pending'}</button></td> : <td><button className='btn btn-accent'>Unpaid</button></td>
                             }
                             {
-                                !order.payment ? <td><button onClick={() => handleCancel(order._id)} className='btn btn-error'>Cancel</button></td> : <td><button className='btn btn-outline' disabled>Cancel</button></td>
+                                !order.payment ? <td><label for="delete-confirm-modal-orders" onClick={() => setOrdersForModal(order)} className='btn btn-error'>Cancel</label></td> : <td><button className='btn btn-outline' disabled>Cancel</button></td>
                             }
 
 
@@ -57,7 +61,9 @@ const ManageAllOrders = () => {
 
                         )
                     }
-
+                    {
+                        ordersForModal && <DeleteConfirmModal orderDeleteRefetch={refetch} ordersForModal={ordersForModal}></DeleteConfirmModal>
+                    }
                 </tbody>
             </table>
         </div>

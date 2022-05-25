@@ -1,12 +1,14 @@
 import axios from '../api/AxiosPrivate';
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import DeleteConfirmModal from '../DeleteConfirmModal/DeleteConfirmModal';
 
 const MyOrders = () => {
+    const [ordersForModal, setOrdersForModal] = useState(null)
     const navigate = useNavigate()
     const [user] = useAuthState(auth)
     const email = user?.email
@@ -37,11 +39,14 @@ const MyOrders = () => {
                             {
                                 product.paymentId && <p className='font-bold lg:text-xs flex flex-wrap text-green-600'>Payment id: {product.paymentId}</p>
                             }
-                            <button onClick={() => handleDelete(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">Delete</button>
+                            <label for="delete-confirm-modal-orders" onClick={() => setOrdersForModal(product)} className='btn btn-error'>Cancel</label>
                             <button disabled={product.payment} onClick={() => handlePayment(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">{product.payment ? <>paid</> : <>pay</>}</button>
 
                         </div>
                     </div>)
+                }
+                {
+                    ordersForModal && <DeleteConfirmModal orderDeleteRefetch={refetch} ordersForModal={ordersForModal}></DeleteConfirmModal>
                 }
             </div>
         </div>
