@@ -63,16 +63,27 @@ const PurchaseSinglePage = () => {
 
             console.log(response.data);
         })
-        let newAvailableQuantity = parseInt(product?.data.available) - orderQuantity;
-        const doc = {
-            available: newAvailableQuantity
+        const available = parseInt(product?.data.available)
+        if (available <= 0) {
+            setQuantityError('Stock out')
+            setButtonDisabled(true)
         }
+        else {
+            let newAvailableQuantity = available - orderQuantity;
+            const doc = {
+                available: newAvailableQuantity
+            }
+            console.log(newAvailableQuantity);
 
-        axios.put(`https://fathomless-refuge-70069.herokuapp.com/parts/${id}`, doc).then(response => {
+            if (available > 0) {
+                axios.put(`https://fathomless-refuge-70069.herokuapp.com/parts/${id}`, doc).then(response => {
 
-            refetch()
-        })
-        toast.success(`Order Successful`)
+                    refetch()
+                    toast.success(`Order Successful`)
+                })
+            }
+
+        }
     }
     return (
         <div className='container sm:container my-20'>
