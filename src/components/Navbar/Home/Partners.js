@@ -14,7 +14,7 @@ const Partners = () => {
             </h1>
             <div className='grid grid-cols-1 justify-items-center gap-5 lg:grid-cols-4'>
                 {
-                    partners.map(p => <div key={p._id}>
+                    partners.map(p => <div key={p.id}>
 
                         <img src={p.img} alt="" />
                     </div>)

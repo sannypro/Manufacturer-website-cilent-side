@@ -6,7 +6,7 @@ const useAdmin = (user) => {
     const [adminLoading, setAdminLoading] = useState(true)
     useEffect(() => {
         const email = user?.email
-        console.log(email);
+
         if (email) {
             axios.get(`https://fathomless-refuge-70069.herokuapp.com/admin/${email}`).then(response => {
                 setAdmin(response.data)

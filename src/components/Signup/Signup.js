@@ -34,10 +34,10 @@ const Signup = () => {
 
 
     }
-    console.log(token);
+
     if (token) {
         navigate('/dashboard')
-        console.log(token);
+
     }
     let signInErrorMessage;
     if (loading || gLoading || updating) {

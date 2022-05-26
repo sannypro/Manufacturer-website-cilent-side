@@ -39,11 +39,11 @@ const MyOrders = () => {
                             {
                                 product.paymentId && <p className='font-bold lg:text-xs flex flex-wrap text-green-600'>Payment id: {product.paymentId}</p>
                             }
-                            <label disabled={product.payment} for="delete-confirm-modal-orders" onClick={() => {
+                            <label disabled={product.payment} htmlFor="delete-confirm-modal-orders" onClick={() => {
                                 setOrdersForModal(product)
                                 refetch()
                             }} className='btn btn-error'>Cancel</label>
-                            <button disabled={product.payment} onClick={() => handlePayment(product._id)} class="btn ">{product.payment ? <>paid</> : <>pay</>}</button>
+                            <button disabled={product.payment} onClick={() => handlePayment(product._id)} className="btn ">{product.payment ? <>paid</> : <>pay</>}</button>
 
                         </div>
                     </div>)

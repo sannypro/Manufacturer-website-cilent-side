@@ -48,26 +48,26 @@ const AddReview = () => {
     }
     return (
         <div className='container sm:container'>
-            <div class="hero ">
-                <div class="hero-content ">
+            <div className="hero ">
+                <div className="hero-content ">
 
-                    <form onSubmit={handleSubmit} class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <div class="card-body">
-                            <div class="form-control">
-                                <label class="label">
-                                    <span class="label-text">Name</span>
+                    <form onSubmit={handleSubmit} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <div className="card-body">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' value={user?.displayName} readOnly disabled class="input input-bordered" />
+                                <input type="text" name='name' value={user?.displayName} readOnly disabled className="input input-bordered" />
                             </div>
-                            <div class="form-control">
-                                <label class="label">
-                                    <span class="label-text">Comment</span>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Comment</span>
                                 </label>
-                                <input type="text" name='comment' placeholder="Comment" class="input input-bordered" />
+                                <input type="text" name='comment' placeholder="Comment" className="input input-bordered" />
                             </div>
-                            <div class="form-control">
-                                <label class="label">
-                                    <span class="label-text">Rating : {ratingSelected}</span>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Rating : {ratingSelected}</span>
                                 </label>
                                 <div >
 
@@ -79,8 +79,8 @@ const AddReview = () => {
                                 </div>
 
                             </div>
-                            <div class="form-control mt-6">
-                                <button onClick={() => setAddBtn(true)} type='submit' class="btn btn-primary">Add review</button>
+                            <div className="form-control mt-6">
+                                <button onClick={() => setAddBtn(true)} type='submit' className="btn btn-primary">Add review</button>
                             </div>
                         </div>
                     </form>

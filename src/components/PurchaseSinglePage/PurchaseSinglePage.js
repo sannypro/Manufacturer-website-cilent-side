@@ -61,7 +61,7 @@ const PurchaseSinglePage = () => {
         }
         axios.post('https://fathomless-refuge-70069.herokuapp.com/order', order).then(response => {
 
-            console.log(response.data);
+
         })
         const available = parseInt(product?.data.available)
         if (available <= 0) {
@@ -73,7 +73,7 @@ const PurchaseSinglePage = () => {
             const doc = {
                 available: newAvailableQuantity
             }
-            console.log(newAvailableQuantity);
+
 
             if (available > 0) {
                 axios.put(`https://fathomless-refuge-70069.herokuapp.com/parts/${id}`, doc).then(response => {

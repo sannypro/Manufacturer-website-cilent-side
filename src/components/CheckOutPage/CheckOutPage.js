@@ -71,11 +71,11 @@ const CheckOutPage = () => {
 
             });
         if (error) {
-            console.log(error);
+
             SetError(error.message)
             setSuccess('')
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
+
             SetError('')
             setSuccess('Your Payment is completed')
 

@@ -21,7 +21,7 @@ const MyProfile = () => {
         return <Loading></Loading>
     }
 
-    console.log(userData);
+
     const handleUpdate = async (e) => {
         e.preventDefault()
         const name = e.target.name.value
@@ -48,45 +48,45 @@ const MyProfile = () => {
 
     return (
         <div className='container sm:conatiner'>
-            <div class="card lg:card-side bg-base-100 shadow-xl">
+            <div className="card lg:card-side bg-base-100 shadow-xl">
                 <figure ><img src={userImg} alt="" /></figure>
-                <div class="card-body items-center">
-                    <h2 class="lg:card-title">User Name: {user?.displayName}</h2>
-                    <h2 class="lg:card-title">User Email: {user?.email}</h2>
-                    <h2 class="lg:card-title">User address: {userData.data.address}</h2>
-                    <h2 class="lg:card-title">User Phone: {userData.data.phone}</h2>
-                    <h2 class="lg:card-title">User Linkedin: {userData.data.linkedin}</h2>
+                <div className="card-body items-center">
+                    <h2 className="lg:card-title">User Name: {user?.displayName}</h2>
+                    <h2 className="lg:card-title">User Email: {user?.email}</h2>
+                    <h2 className="lg:card-title">User address: {userData.data.address}</h2>
+                    <h2 className="lg:card-title">User Phone: {userData.data.phone}</h2>
+                    <h2 className="lg:card-title">User Linkedin: {userData.data.linkedin}</h2>
                 </div>
             </div>
             <div className='flex justify-center my-10'>
-                <div class="card sm:w-9/12 bg-base-100 shadow-xl">
-                    <form onSubmit={handleUpdate} class="card-body">
-                        <h2 class="card-title">Want to Update Profile</h2>
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Name</span>
+                <div className="card sm:w-9/12 bg-base-100 shadow-xl">
+                    <form onSubmit={handleUpdate} className="card-body">
+                        <h2 className="card-title">Want to Update Profile</h2>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
                             </label>
-                            <input required type="text" name='name' class="input input-bordered" />
-                        </div><div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Address</span>
+                            <input required type="text" name='name' className="input input-bordered" />
+                        </div><div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Address</span>
                             </label>
-                            <input required type="text" name='address' class="input input-bordered" />
+                            <input required type="text" name='address' className="input input-bordered" />
                         </div>
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">Phone</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Phone</span>
                             </label>
-                            <input required type="text" name='phone' class="input input-bordered" />
+                            <input required type="text" name='phone' className="input input-bordered" />
                         </div>
-                        <div class="form-control">
-                            <label class="label">
-                                <span class="label-text">LinkedIn Profile link</span>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">LinkedIn Profile link</span>
                             </label>
-                            <input required type="text" name='linkedin' class="input input-bordered" />
+                            <input required type="text" name='linkedin' className="input input-bordered" />
                         </div>
-                        <div class="card-actions justify-center">
-                            <button type='submit' class="btn btn-primary">Update</button>
+                        <div className="card-actions justify-center">
+                            <button type='submit' className="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>

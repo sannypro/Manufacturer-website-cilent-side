@@ -17,9 +17,11 @@ const ManageAllOrders = () => {
     const handleShipped = async (id, status) => {
         if (!status) {
             await axios.put(`https://fathomless-refuge-70069.herokuapp.com/orders/${id}`, { status: 'shipped' })
-                .then(response => console.log(response.data))
-            refetch()
-            toast.success("items shipped")
+                .then(response => {
+                    refetch()
+                    toast.success("items shipped")
+                })
+
         }
     }
     const handleCancel = async (id) => {
@@ -27,9 +29,9 @@ const ManageAllOrders = () => {
         refetch()
     }
     return (
-        <div class="overflow-x-auto container">
+        <div className="overflow-x-auto container">
             <h1 className="text-4xl"> All Orders : {orders.length}</h1>
-            <table class="table table-zebra w-full">
+            <table className="table table-zebra w-full">
 
                 <thead>
                     <tr>
@@ -56,7 +58,7 @@ const ManageAllOrders = () => {
                                 <td><button className='btn btn-success' disabled={!order.payment || order.status} onClick={() => handleShipped(order._id, order.status)}> Ship Now</button></td>
                             }
                             {
-                                !order.payment ? <td><label for="delete-confirm-modal-orders" onClick={() => setOrdersForModal(order)} className='btn btn-error'>Cancel</label></td> : <td><button className='btn btn-outline' disabled>Cancel</button></td>
+                                !order.payment ? <td><label htmlFor="delete-confirm-modal-orders" onClick={() => setOrdersForModal(order)} className='btn btn-error'>Cancel</label></td> : <td><button className='btn btn-outline' disabled>Cancel</button></td>
                             }
 
 

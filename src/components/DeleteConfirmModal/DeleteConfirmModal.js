@@ -17,28 +17,28 @@ const DeleteConfirmModal = ({ product, refetch, ordersForModal, orderDeleteRefet
         })
 
     }
-    console.log(ordersForModal);
+
     return (
         <div>
-            <input type="checkbox" id="delete-confirm-modal" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg">Are you sure you want to delete?</h3>
-                    <p class="py-4">You are deleting : {product?.name}</p>
-                    <div class="modal-action">
-                        <label for="delete-confirm-modal" class="btn btn-success">Close</label>
-                        <label onClick={() => handleDeleteProduct(product._id)} for="delete-confirm-modal" class="btn btn-error">Delete</label>
+            <input type="checkbox" id="delete-confirm-modal" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Are you sure you want to delete?</h3>
+                    <p className="py-4">You are deleting : {product?.name}</p>
+                    <div className="modal-action">
+                        <label htmlFor="delete-confirm-modal" className="btn btn-success">Close</label>
+                        <label onClick={() => handleDeleteProduct(product._id)} htmlFor="delete-confirm-modal" className="btn btn-error">Delete</label>
                     </div>
                 </div>
             </div>
-            <input type="checkbox" id="delete-confirm-modal-orders" class="modal-toggle" />
-            <div class="modal modal-bottom sm:modal-middle">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg">Are you sure you want to delete?</h3>
-                    <p class="py-4">You are deleting : {ordersForModal?.name}</p>
-                    <div class="modal-action">
-                        <label for="delete-confirm-modal-orders" class="btn btn-success">Close</label>
-                        <label onClick={() => handleDeleteOrder(ordersForModal._id)} for="delete-confirm-modal-orders" class="btn btn-error">Delete</label>
+            <input type="checkbox" id="delete-confirm-modal-orders" className="modal-toggle" />
+            <div className="modal modal-bottom sm:modal-middle">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Are you sure you want to delete?</h3>
+                    <p className="py-4">You are deleting : {ordersForModal?.name}</p>
+                    <div className="modal-action">
+                        <label htmlFor="delete-confirm-modal-orders" className="btn btn-success">Close</label>
+                        <label onClick={() => handleDeleteOrder(ordersForModal._id)} htmlFor="delete-confirm-modal-orders" className="btn btn-error">Delete</label>
                     </div>
                 </div>
             </div>

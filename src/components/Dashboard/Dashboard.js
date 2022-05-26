@@ -18,18 +18,18 @@ const Dashboard = () => {
 
     const [user] = useAuthState(auth)
     const [admin] = useAdmin(user)
-    console.log(admin);
+
     return (
-        <div class="drawer  drawer-mobile">
-            <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content ">
+        <div className="drawer  drawer-mobile">
+            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content ">
                 <Outlet></Outlet>
 
 
             </div>
-            <div class="drawer-side colo-base-200">
-                <label for="my-drawer-2" class="drawer-overlay"></label>
-                <ul class="menu p-4 overflow-y-auto w-50 bg-base-200  text-base-content">
+            <div className="drawer-side colo-base-200">
+                <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+                <ul className="menu p-4 overflow-y-auto w-50 bg-base-200  text-base-content">
 
                     <li><Link to='my-profile'> <BsFillPersonFill    ></BsFillPersonFill> My Profile</Link></li>
                     {

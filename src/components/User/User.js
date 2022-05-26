@@ -13,9 +13,11 @@ const User = () => {
         return <Loading></Loading>
     }
     const makeAdmin = async (email, name) => {
-        await axios.put(`https://fathomless-refuge-70069.herokuapp.com/user/admin/${email}`).then(response => console.log(response))
-        refetch()
-        toast.success(` you approved ${name || email} as admin.`)
+        await axios.put(`https://fathomless-refuge-70069.herokuapp.com/user/admin/${email}`).then(response => {
+            refetch()
+            toast.success(` you approved ${name || email} as admin.`)
+        })
+
     }
     const users = user.data
 
@@ -25,9 +27,9 @@ const User = () => {
         toast.success(`User Deleted`)
     }
     return (
-        <div class="overflow-x-auto container">
+        <div className="overflow-x-auto container">
             <h1 className="text-4xl"> All user : {user.data.length}</h1>
-            <table class="table table-zebra w-full">
+            <table className="table table-zebra w-full">
 
                 <thead>
                     <tr>

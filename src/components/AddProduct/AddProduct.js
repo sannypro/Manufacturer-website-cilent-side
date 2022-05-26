@@ -18,45 +18,45 @@ const AddProduct = () => {
     }
     return (
         <div>
-            <form onSubmit={handleSubmit} class="card-body">
-                <h2 class="card-title">Want to Add a Product</h2>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Name</span>
+            <form onSubmit={handleSubmit} className="card-body">
+                <h2 className="card-title">Want to Add a Product</h2>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Name</span>
                     </label>
-                    <input required type="text" name='name' class="input input-bordered" />
-                </div><div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Description</span>
+                    <input required type="text" name='name' className="input input-bordered" />
+                </div><div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Description</span>
                     </label>
-                    <input required type="text" name='description' class="input input-bordered" />
+                    <input required type="text" name='description' className="input input-bordered" />
                 </div>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Minimun Quantity</span>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Minimun Quantity</span>
                     </label>
-                    <input required type="text" name='minimumQuantity' class="input input-bordered" />
+                    <input required type="text" name='minimumQuantity' className="input input-bordered" />
                 </div>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Available Quantity</span>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Available Quantity</span>
                     </label>
-                    <input required type="text" name='availeable' class="input input-bordered" />
+                    <input required type="text" name='availeable' className="input input-bordered" />
                 </div>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Price</span>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Price</span>
                     </label>
-                    <input required type="text" name='price' class="input input-bordered" />
+                    <input required type="text" name='price' className="input input-bordered" />
                 </div>
-                <div class="form-control">
-                    <label class="label">
-                        <span class="label-text">Image Link</span>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Image Link</span>
                     </label>
-                    <input required type="text" name='img' class="input input-bordered" />
+                    <input required type="text" name='img' className="input input-bordered" />
                 </div>
-                <div class="card-actions justify-center">
-                    <button type='submit' class="btn btn-primary">Add</button>
+                <div className="card-actions justify-center">
+                    <button type='submit' className="btn btn-primary">Add</button>
                 </div>
             </form>
         </div>

@@ -13,12 +13,12 @@ const ManageProducts = () => {
     }
 
     const products = data.data
-    console.log(product);
+
     return (
         <div className='container'>
-            <div class="overflow-x-auto">
+            <div className="overflow-x-auto">
                 <h1 className="text-4xl"> All Product :{products.length} </h1>
-                <table class="table table-zebra w-full">
+                <table className="table table-zebra w-full">
 
                     <thead>
                         <tr>
@@ -40,7 +40,7 @@ const ManageProducts = () => {
                                 <td>{product.minimunOrder}</td>
                                 <td>{product.available}</td>
                                 <td>{product.price}</td>
-                                <td><label onClick={() => setProduct(product)} for="delete-confirm-modal" className='btn btn-error'>Delete Product</label></td>
+                                <td><label onClick={() => setProduct(product)} htmlFor="delete-confirm-modal" className='btn btn-error'>Delete Product</label></td>
                             </tr>
 
                             )

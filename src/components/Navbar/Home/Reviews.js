@@ -12,7 +12,7 @@ const Reviews = () => {
             }
         }).then(response => setReviews(response.data))
     }, [])
-    console.log(reviews);
+
     return (
         <div className='mb-20'>
             <h1 className='text-center text-6xl mb-12'>Our Client Says</h1>

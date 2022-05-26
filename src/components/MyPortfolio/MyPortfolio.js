@@ -7,14 +7,14 @@ const MyPortfolio = () => {
             <p className='text-center font-bold'> Email: Sannymr79@gmail.com</p>
             <div>
 
-                <div class="divider"></div>
+                <div className="divider"></div>
                 <h1 className='text-2xl font-bold mb-3'>Education Background:</h1>
                 <p > <b>Higher Secondary School certificate (HSC) </b><span>: 2021, GPA: 4.50 Out of 5</span> </p>
 
                 Govt. Haraganga College
 
                 Munshiganj-1500
-                <div class="divider"></div>
+                <div className="divider"></div>
                 <h1 className='text-2xl font-bold'>List of technologies:</h1>
                 <ul className='list-disc list-inside '>
                     <li>JavaScript</li>
@@ -31,7 +31,7 @@ const MyPortfolio = () => {
                 </ul>
 
             </div>
-            <div class="divider"></div>
+            <div className="divider"></div>
             <div className='mb-4'>
                 <h1 className='text-2xl font-bold'>Project:</h1>
                 <ul className='list-disc list-inside '>

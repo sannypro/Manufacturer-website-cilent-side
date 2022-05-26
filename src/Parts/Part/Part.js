@@ -21,8 +21,8 @@ const Part = () => {
                     <figure><img src={product?.img} className="w-full" alt="Shoes" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{product.name}</h2>
-                        <div class="tooltip" data-tip={product.des}>
-                            <button class="btn btn-ghost mb-10">{product.des.slice(0, 150)}</button>
+                        <div className="tooltip" data-tip={product.des}>
+                            <button className="btn btn-ghost mb-10">{product.des.slice(0, 150)}</button>
                         </div>
                         <p className='font-bold'>Minimum Order Quantity: {product.minimunOrder}</p>
                         <p className='font-bold'>Available Order Quantity: {product.available}</p>
