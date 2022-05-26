@@ -11,6 +11,7 @@ const DeleteConfirmModal = ({ product, refetch, ordersForModal, orderDeleteRefet
     const handleDeleteOrder = async (id) => {
         await axios.delete(`https://fathomless-refuge-70069.herokuapp.com/order/${id}`)
         orderDeleteRefetch()
+        toast.success('Item deleted')
     }
     console.log(ordersForModal);
     return (

@@ -3,6 +3,7 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import Loading from '../Shared/Loading';
 import { async } from '@firebase/util';
+import { toast } from 'react-toastify';
 
 const User = () => {
     const { data: user, isLoading, refetch } = useQuery('all-user', async () => await axios.get('https://fathomless-refuge-70069.herokuapp.com/all-user'))
@@ -11,13 +12,18 @@ const User = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    const makeAdmin = async (email) => {
+    const makeAdmin = async (email, name) => {
         await axios.put(`https://fathomless-refuge-70069.herokuapp.com/user/admin/${email}`).then(response => console.log(response))
         refetch()
+        toast.success(` you approved ${name || email} as admin.`)
     }
     const users = user.data
 
-    console.log('=================', user);
+    const handleDeleteUser = async (id) => {
+        await axios.delete(`https://fathomless-refuge-70069.herokuapp.com/user/${id}`)
+        refetch()
+        toast.success(`User Deleted`)
+    }
     return (
         <div class="overflow-x-auto container">
             <h1 className="text-4xl"> All user : {user.data.length}</h1>
@@ -26,6 +32,7 @@ const User = () => {
                 <thead>
                     <tr>
                         <th></th>
+
                         <th>Email</th>
                         <th >Make Admin</th>
                         <th >Delete</th>
@@ -36,11 +43,10 @@ const User = () => {
                     {
                         users?.length > 0 && users.map((user, index) => <tr key={user._id}>
                             <th>{index + 1}</th>
-
                             <td>{user.email}</td>
-                            <td>{user.role !== 'admin' && <button onClick={() => makeAdmin(user.email)} className='btn-sm btn mr-4'>Make Admin</button>}</td>
+                            <td>{user.role !== 'admin' && <button onClick={() => makeAdmin(user.email, user.name)} className='btn-sm btn-success btn mr-4'>Make Admin</button>}</td>
 
-                            <td><button className='btn-sm btn'>Delete user</button></td>
+                            <td><button onClick={() => handleDeleteUser(user._id)} className='btn-sm btn btn-error'>Delete user</button></td>
 
                         </tr>
 

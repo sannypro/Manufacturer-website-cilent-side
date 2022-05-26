@@ -5,6 +5,7 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
+import { toast } from 'react-toastify';
 
 const PurchaseSinglePage = () => {
     const [user] = useAuthState(auth)
@@ -71,6 +72,7 @@ const PurchaseSinglePage = () => {
 
             refetch()
         })
+        toast.success(`Order Successful`)
     }
     return (
         <div className='container sm:container my-20'>
