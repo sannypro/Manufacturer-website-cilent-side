@@ -37,7 +37,7 @@ const MyPortfolio = () => {
                 <ul className='list-disc list-inside '>
                     <li> <a className='text-info' target={"blank"} href="https://dental-care-bb52c.web.app/">Independant Service provider website</a></li>
                     <li> <a className='text-info' target={"blank"} href="https://furnob-furniture-warehouse.web.app/">Warehouse management site</a></li>
-                    <li> <a className='text-info' target={"blank"} href="https://to-do-list-5cb2f.web.app/login">Independant Service provider website</a></li>
+                    <li> <a className='text-info' target={"blank"} href="https://to-do-list-5cb2f.web.app/login">To do List</a></li>
                 </ul>
             </div>
         </div>
