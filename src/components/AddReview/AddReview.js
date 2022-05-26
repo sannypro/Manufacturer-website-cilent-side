@@ -2,11 +2,14 @@ import axios from '../api/AxiosPrivate';
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
 
 const AddReview = () => {
-    const [user] = useAuthState(auth)
+    const [user] = useAuthState(auth);
+
     const [rating, setRating] = useState('')
-    const [ratingSelected, setRatingSelected] = useState('')
+    const [ratingSelected, setRatingSelected] = useState('');
+    const [addbtn, setAddBtn] = useState(false);
 
     const handleRating1 = () => {
         setRating('1')
@@ -36,7 +39,12 @@ const AddReview = () => {
             comment: e.target.comment.value,
             rating: rating
         }
-        axios.post('https://fathomless-refuge-70069.herokuapp.com/review', review)
+        if (addbtn) {
+            axios.post('https://fathomless-refuge-70069.herokuapp.com/review', review).then(response => {
+                toast.success("Review added")
+                setAddBtn(false)
+            })
+        }
     }
     return (
         <div className='container sm:container'>
@@ -72,7 +80,7 @@ const AddReview = () => {
 
                             </div>
                             <div class="form-control mt-6">
-                                <button type='submit' class="btn btn-primary">Add review</button>
+                                <button onClick={() => setAddBtn(true)} type='submit' class="btn btn-primary">Add review</button>
                             </div>
                         </div>
                     </form>
