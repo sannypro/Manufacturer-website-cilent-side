@@ -4,14 +4,18 @@ import { toast } from 'react-toastify';
 
 const DeleteConfirmModal = ({ product, refetch, ordersForModal, orderDeleteRefetch }) => {
     const handleDeleteProduct = async (id) => {
-        await axios.delete(`https://fathomless-refuge-70069.herokuapp.com/part/${id}`)
-        refetch()
-        toast.success('Item deleted')
+        await axios.delete(`https://fathomless-refuge-70069.herokuapp.com/part/${id}`).then(response => {
+            refetch()
+            toast.success('Item deleted')
+        })
+
     }
     const handleDeleteOrder = async (id) => {
-        await axios.delete(`https://fathomless-refuge-70069.herokuapp.com/order/${id}`)
-        orderDeleteRefetch()
-        toast.success('Item deleted')
+        await axios.delete(`https://fathomless-refuge-70069.herokuapp.com/order/${id}`).then(response => {
+            orderDeleteRefetch()
+            toast.success('Item deleted')
+        })
+
     }
     console.log(ordersForModal);
     return (
