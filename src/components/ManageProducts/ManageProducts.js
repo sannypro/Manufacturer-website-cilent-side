@@ -15,7 +15,7 @@ const ManageProducts = () => {
     const products = data.data
     console.log(product);
     return (
-        <div className=''>
+        <div className='container'>
             <div class="overflow-x-auto">
                 <h1 className="text-4xl"> All Product :{products.length} </h1>
                 <table class="table table-zebra w-full">

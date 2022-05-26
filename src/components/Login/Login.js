@@ -97,11 +97,11 @@ const Login = () => {
                                     </label>
                                 </div>
                                 {signInErrorMessage}
-                                <input className='btn text-white w-full max-w-xs' type="submit" value='Login' />
+                                <input className='btn btn-primary text-white w-full max-w-xs' type="submit" value='Login' />
                             </form>
-                            <p>New to doctors portal? <Link className='text-secondary' to="/signup">Create new Account</Link></p>
+                            <p>New to doctors portal? <Link className='text-green-500' to="/signup">Create new Account</Link></p>
                             <div className="divider">OR</div>
-                            <button onClick={handleGoogle} className="btn btn-outline">Continue with google</button>
+                            <button onClick={handleGoogle} className="btn btn-outline btn-primary">Continue with google</button>
                         </div>
                     </div>
                 </div>

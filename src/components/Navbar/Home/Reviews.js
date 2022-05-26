@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import user from "../../../Assets/img/user.png"
 
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
@@ -26,7 +26,7 @@ const Reviews = () => {
                             <div className="flex items-center ">
                                 <div className="avatar">
                                     <div className="w-16 rounded-full ring ring-primary ring-offset-base-100 mr-5">
-                                        <img src={review.img} alt='' />
+                                        <img src={user} alt='' />
                                     </div>
                                 </div>
                                 <div>

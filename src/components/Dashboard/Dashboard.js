@@ -3,6 +3,16 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
 import auth from '../../firebase.init';
 import useAdmin from '../Hooks/useAdmin';
+import { BsFillPersonFill } from "react-icons/bs";
+import { BsFillPersonPlusFill } from "react-icons/bs";
+import { BsNodePlus } from "react-icons/bs";
+import { MdManageAccounts } from "react-icons/md";
+import { MdProductionQuantityLimits } from "react-icons/md";
+import { MdRateReview } from "react-icons/md";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+
+
+
 
 const Dashboard = () => {
 
@@ -19,26 +29,26 @@ const Dashboard = () => {
             </div>
             <div class="drawer-side colo-base-200">
                 <label for="my-drawer-2" class="drawer-overlay"></label>
-                <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
+                <ul class="menu p-4 overflow-y-auto w-50 bg-base-200  text-base-content">
 
-                    <li><Link to='my-profile'>My Profile</Link></li>
+                    <li><Link to='my-profile'> <BsFillPersonFill    ></BsFillPersonFill> My Profile</Link></li>
                     {
-                        admin.admin ? '' : <li><Link to='add-review'>Add Review</Link></li>
+                        admin.admin ? '' : <li><Link to='add-review'><MdRateReview></MdRateReview>Add Review</Link></li>
                     }
                     {
-                        admin.admin ? '' : <li><Link to='my-orders'>My Orders</Link></li>
+                        admin.admin ? '' : <li><Link to='my-orders'><AiOutlineShoppingCart></AiOutlineShoppingCart> Orders</Link></li>
                     }
                     {
-                        admin.admin && <li><Link to='user'>Make Admin</Link></li>
+                        admin.admin && <li><Link to='user'><BsFillPersonPlusFill></BsFillPersonPlusFill> Make Admin</Link></li>
                     }
                     {
-                        admin.admin && <li><Link to='add-product'>Add Product</Link></li>
+                        admin.admin && <li><Link to='add-product'><BsNodePlus></BsNodePlus> Add Product</Link></li>
                     }
                     {
-                        admin.admin && <li><Link to='manage-all-orders'>Manage All Orders</Link></li>
+                        admin.admin && <li><Link to='manage-all-orders'> <MdProductionQuantityLimits></MdProductionQuantityLimits> Manage All Orders</Link></li>
                     }
                     {
-                        admin.admin && <li><Link to='manage-products'>Manage Products</Link></li>
+                        admin.admin && <li><Link to='manage-products'> <MdManageAccounts></MdManageAccounts>Manage Products</Link></li>
                     }
                 </ul>
 

@@ -27,7 +27,7 @@ const ManageAllOrders = () => {
         refetch()
     }
     return (
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto container">
             <h1 className="text-4xl"> All Orders : {orders.length}</h1>
             <table class="table table-zebra w-full">
 

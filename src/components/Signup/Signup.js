@@ -36,7 +36,7 @@ const Signup = () => {
     }
     console.log(token);
     if (token) {
-        navigate('/my-orders')
+        navigate('/dashboard')
         console.log(token);
     }
     let signInErrorMessage;
@@ -121,11 +121,11 @@ const Signup = () => {
                                 </label>
                             </div>
                             {signInErrorMessage}
-                            <input className='btn text-white w-full max-w-xs' type="submit" value='SignUp' />
+                            <input className='btn btn-primary text-white w-full max-w-xs' type="submit" value='SignUp' />
                         </form>
-                        <p>Alreay have an Account? <Link className='text-secondary' to="/login">Please Login</Link></p>
+                        <p>Alreay have an Account? <Link className='text-green-500' to="/login">Please Login</Link></p>
                         <div className="divider">OR</div>
-                        <button onClick={handleGoogle} className="btn btn-outline">Continue with google</button>
+                        <button onClick={handleGoogle} className="btn btn-primary btn-outline">Continue with google</button>
                     </div>
                 </div>
             </div>

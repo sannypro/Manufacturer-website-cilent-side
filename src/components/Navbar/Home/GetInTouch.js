@@ -4,7 +4,7 @@ import React from 'react';
 const GetInTouch = () => {
     return (
         <div style={{ background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${"https://i.ibb.co/hYV4wMk/istockphoto-1212230930-170667a.jpg"})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}>
-            <div className='flex justify-center py-16 '>
+            <div className='flex justify-center container py-16 '>
                 <div>
                     <div>
                         <h4 className='text-3xl text-secondary'> Contact us</h4>

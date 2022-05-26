@@ -39,8 +39,11 @@ const MyOrders = () => {
                             {
                                 product.paymentId && <p className='font-bold lg:text-xs flex flex-wrap text-green-600'>Payment id: {product.paymentId}</p>
                             }
-                            <label for="delete-confirm-modal-orders" onClick={() => setOrdersForModal(product)} className='btn btn-error'>Cancel</label>
-                            <button disabled={product.payment} onClick={() => handlePayment(product._id)} class="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">{product.payment ? <>paid</> : <>pay</>}</button>
+                            <label disabled={product.payment} for="delete-confirm-modal-orders" onClick={() => {
+                                setOrdersForModal(product)
+                                refetch()
+                            }} className='btn btn-error'>Cancel</label>
+                            <button disabled={product.payment} onClick={() => handlePayment(product._id)} class="btn ">{product.payment ? <>paid</> : <>pay</>}</button>
 
                         </div>
                     </div>)
