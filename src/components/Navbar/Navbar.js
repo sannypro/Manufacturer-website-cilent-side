@@ -45,7 +45,7 @@ const Navbar = () => {
                     </label>
                 </div>
             </div>
-            <div className="navbar-center lg:justify-end hidden lg:flex">
+            <div className="navbar-end lg:justify-end hidden lg:flex">
                 <ul className="menu justify-end menu-horizontal p-0">
                     <li><Link to='/'>Home</Link></li>
 
